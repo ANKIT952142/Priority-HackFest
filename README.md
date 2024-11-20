@@ -1,3 +1,14 @@
+# **Object Engine (H1)**
+
+Basic Flow:
+The Engine uses SFTP to get inputs . 
+1. The folder object_engine will get new sub folder under it for any new query.
+2. The sub-folder name shall be in nomenclature <18 alphanumeric characters><ddmmyyyyhhmmss>.
+3. Any inelegible folder as per naming comvention will be moved to object_engine_reject.
+4. If any folder doesn't have valid objects.json and rules.json, they shall be moved to object_engine_failed.
+5. Successfully processed folder shall be moved to object_engine_processed along with a results.json.
+
+   
 Components:
 
 ==SFTP
