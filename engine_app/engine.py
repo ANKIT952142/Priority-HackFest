@@ -1,12 +1,12 @@
 import logging
 import json
 import time
-from .modules.logging_config import configure_logging
-from .modules.config import load_config
-from .modules.redis_utils import connect_redis
-from .modules.sftp_utils import connect_sftp, check_folder_exists
+from modules.logging_config import configure_logging
+from modules.config import load_config
+from modules.redis_utils import connect_redis
+from modules.sftp_utils import connect_sftp, check_folder_exists
 from flask import Flask, request, jsonify
-from .modules.folder_processor import handle_subfolder, is_new_subfolder
+from modules.folder_processor import handle_subfolder, is_new_subfolder
 
 # Configure logging
 configure_logging('logs/engine.log')  # Call the function to set up logging
@@ -51,7 +51,7 @@ def process_folder():
                     if redis_client.exists(check_count_key):
                          check_count = int(redis_client.get(check_count_key))
                          if check_count < 3:
-                              time.sleep(5)
+                              time.sleep(15)
                               handle_subfolder(folder_name, sftp, redis_client, sftp_config)
                               retry_count += 1
                     else:

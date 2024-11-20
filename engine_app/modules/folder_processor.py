@@ -4,9 +4,9 @@ import logging
 import random
 import string
 import re
-from redis_utils import connect_redis, acquire_lock, release_lock
-from sftp_utils import open_with_retry, exists_with_retry, move_folder
-from config import load_config
+from .redis_utils import connect_redis, acquire_lock, release_lock
+from .sftp_utils import open_with_retry, exists_with_retry, move_folder
+from .config import load_config
 from datetime import datetime
 
 def is_new_subfolder(folder_name):
@@ -228,7 +228,7 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                 files[filename] = False
 
         if not files['objects.json'] or not files['rules.json']:
-            if check_count < 1:
+            if check_count < 3:
                 logging.warning(f"Warning: Both rules.json and objects.json not present yet for {subfolder}")
             else:
                 random_filename = generate_random_filename()
@@ -250,7 +250,7 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                 sftp.put(local_results_path, result_path)
                 logging.info(f"Successfully uploaded the warning results as results.json for subfolder {subfolder}")
                 os.remove(local_results_path)
-                #move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
+                move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
                 redis_client.delete(check_count_key)                
         else:
             try:
