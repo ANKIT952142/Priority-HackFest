@@ -30,7 +30,6 @@ docker-compose up -d
 Check SFTP and Redis endpoint details in config directory in following files:
 sftp.config
 redis.config
-engine.config
 
 == python m -venv engine
 == source ./engine/bin/activate

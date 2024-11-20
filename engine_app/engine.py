@@ -14,7 +14,6 @@ configure_logging('logs/engine.log')  # Call the function to set up logging
 # Load configurations
 sftp_config = load_config('config/sftp.config')
 redis_config = load_config('config/redis.config')
-engine_config = load_config('config/engine.config')
 
 # Initialize Redis client
 redis_client = connect_redis(redis_config)
