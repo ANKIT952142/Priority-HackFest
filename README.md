@@ -1,4 +1,4 @@
-# **Object Engine **
+# **Object Engine**
 
 Basic Flow:
 The Engine uses SFTP to get inputs . 
@@ -9,7 +9,6 @@ The Engine uses SFTP to get inputs .
 5. Successfully processed folder shall be moved to object_engine_processed along with a results.json.
 
    
-Components:
 ## **Components:**
 
 ### **SFTP**
