@@ -1,0 +1,46 @@
+======================= System Setup:============================
+=> yum install docker
+=> yum install python
+=> yum install python3-pip
+
+# docker --version
+Docker version 25.0.5, build 5dc9bcc
+# python --version
+Python 3.9.16
+# pip --version
+pip 21.3.1 from /usr/lib/python3.9/site-packages/pip (python 3.9)
+# 
+
+===================== Docker Compose =============================
+=> curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+=> chmod +x /usr/local/bin/docker-compose
+
+# docker-compose version
+Docker Compose version v2.30.3
+# 
+
+====================== Start Redis and SFTP via docker-compose ======
+= Ensure sftp.config.json is present in current directory along with docker-compose.yml
+
+docker-compose up -d
+
+=Validate sftp login on port 2200 and redis connectivity on port 6379 on current host
+
+==============Start Application=====================================
+Check SFTP and Redis endpoint details in config directory in following files:
+sftp.config
+redis.config
+engine.config
+
+== python m -venv engine
+== source ./engine/bin/activate
+== pip install -r requirements.txt
+== python engine.py (For running core engine listening on port 5000)
+
+Similarly for sftp monitor triggering engine 
+== python m -venv monitor
+== source ./engine/bin/activate
+== pip install -r requirements.txt
+== python monitor.py
+
+
