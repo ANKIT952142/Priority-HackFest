@@ -6,7 +6,7 @@ Components:
 	- object_engine(Input Folder)
 	- object_engine_processed(Results Folder)
 	- object_engine_reject(folders not eligible for processing)
-	-	object_engine_failed(Folders failed to process)
+	- object_engine_failed(Folders failed to process)
 
 ==Redis
 1. Used by Core Engine for counter and lock mechanism.
