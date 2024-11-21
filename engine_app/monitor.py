@@ -55,15 +55,17 @@ def target_new_folder(sftp, sftp_config, folder, engine_url, redis_client):
     processed = False
 
     try:
-        for attempt in range(max_retries):
-            processed = execute_requests_command(folder, engine_url)
-            if processed:
-                logging.info(f"Successfully processed folder: {folder}")
-                break  # Exit the loop if successful
-            else:
-                logging.warning(f"Attempt {attempt + 1} failed for folder: {folder}. Retrying...")
-                if attempt < 2:
-                    time.sleep(10)  # Wait before retrying
+        with connect_sftp(sftp_config) as sftp_check:
+            for attempt in range(max_retries):
+                if check_folder_exists(sftp_check, folder, sftp_config['SFTP_FOLDER']):
+                    processed = execute_requests_command(folder, engine_url)
+                    if processed:
+                        logging.info(f"Successfully processed folder: {folder}")
+                        break  # Exit the loop if successful
+                    else:
+                        logging.warning(f"Attempt {attempt + 1} failed for folder: {folder}. Retrying...")
+                        if attempt < 2:
+                            time.sleep(10)  # Wait before retrying
 
         if not processed:
             with connect_sftp(sftp_config) as sftp_move:
