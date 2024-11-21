@@ -6,6 +6,11 @@ services:
       - "2200:22"
     volumes:
       - ./config/sftp.config.json:/app/config/sftp.json:ro
+#      - ./data/demo/object_engine:/home/demo/sftp/object_engine
+#      - ./data/demo/object_engine_processed:/home/demo/sftp/object_engine_processed
+#      - ./data/demo/object_engine_failed:/home/demo/sftp/object_engine_failed
+#      - ./data/demo/object_engine_reject:/home/demo/sftp/object_engine_reject
+#    entrypoint: ["/bin/sh", "-c", "chown -R 1000:1000 /home/demo/sftp && chmod -R 755 /home/demo/sftp && tini -- dotnet ES.SFTP.dll"]
   cache:
     image: redis:6.2-alpine
     restart: always

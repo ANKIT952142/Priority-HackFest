@@ -22,6 +22,8 @@ Docker Compose version v2.30.3
 ====================== Start Redis and SFTP via docker-compose ======
 = Ensure sftp.config.json is present in current directory along with docker-compose.yml
 
+service docker start
+chkconfig docker on
 docker-compose up -d
 
 =Validate sftp login on port 2200 and redis connectivity on port 6379 on current host
