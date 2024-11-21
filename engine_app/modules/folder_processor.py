@@ -246,9 +246,9 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                     json.dump(missing_files_warning, f)
                 logging.info(f"Created temporary local file with random name: {local_results_path}")
 
-                result_path = os.path.join(folder, subfolder, 'error.json')
+                result_path = os.path.join(folder, subfolder, 'warning.json')
                 sftp.put(local_results_path, result_path)
-                logging.info(f"Successfully uploaded the warning results as results.json for subfolder {subfolder}")
+                logging.info(f"Successfully uploaded the warning results as warning.json for subfolder {subfolder}")
                 os.remove(local_results_path)
                 #move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
                 redis_client.delete(check_count_key)                
@@ -271,7 +271,7 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                                 json.dump(error_message, f)
                             result_path = os.path.join(folder, subfolder, 'error.json')
                             sftp.put(local_results_path, result_path)
-                            logging.info(f"Uploaded results.json with error for objects.json in subfolder {subfolder}")
+                            logging.info(f"Uploaded error.json with error for objects.json in subfolder {subfolder}")
                             os.remove(local_results_path)
                             move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
                             redis_client.delete(check_count_key)
@@ -286,7 +286,6 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                             logging.info(f"Loaded rules.json in subfolder {subfolder}")
                             logging.info(f"Rules JSON: {rules_json}")
                         except json.JSONDecodeError as e:
-                            # Instead of raising, log error and write to results.json
                             logging.error(f"Error decoding rules.json in subfolder {subfolder}: {e}")
                             error_message = {
                                 "error": "Invalid JSON syntax in file",
@@ -298,7 +297,7 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                                 json.dump(error_message, f)
                             result_path = os.path.join(folder, subfolder, 'error.json')
                             sftp.put(local_results_path, result_path)
-                            logging.info(f"Uploaded results.json with error for rules.json in subfolder {subfolder}")
+                            logging.info(f"Uploaded error.json with error for rules.json in subfolder {subfolder}")
                             os.remove(local_results_path)
                             move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
                             redis_client.delete(check_count_key)
