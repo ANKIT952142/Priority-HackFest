@@ -2,3 +2,4 @@ pysftp==0.2.9
 redis==5.2.0
 pyrules==0.1.0
 flask==3.0.3
+requests==2.32.3

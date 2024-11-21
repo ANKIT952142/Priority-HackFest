@@ -1,1 +1,47 @@
-=> Log file for Monitor
+test
+2024-11-21 11:32:17 - INFO - Attempting to connect to SFTP.
+2024-11-21 11:32:17 - DEBUG - starting thread (client mode): 0x4cb3eb80
+2024-11-21 11:32:17 - DEBUG - Local version/idstring: SSH-2.0-paramiko_3.5.0
+2024-11-21 11:32:17 - DEBUG - Remote version/idstring: SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u3
+2024-11-21 11:32:17 - INFO - Connected (version 2.0, client OpenSSH_8.4p1)
+2024-11-21 11:32:17 - DEBUG - === Key exchange possibilities ===
+2024-11-21 11:32:17 - DEBUG - kex algos: curve25519-sha256, curve25519-sha256@libssh.org, ecdh-sha2-nistp256, ecdh-sha2-nistp384, ecdh-sha2-nistp521, diffie-hellman-group-exchange-sha256, diffie-hellman-group16-sha512, diffie-hellman-group18-sha512, diffie-hellman-group14-sha256, kex-strict-s-v00@openssh.com
+2024-11-21 11:32:17 - DEBUG - server key: ssh-ed25519, rsa-sha2-512, rsa-sha2-256, ssh-rsa
+2024-11-21 11:32:17 - DEBUG - client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+2024-11-21 11:32:17 - DEBUG - server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+2024-11-21 11:32:17 - DEBUG - client mac: umac-64-etm@openssh.com, umac-128-etm@openssh.com, hmac-sha2-256-etm@openssh.com, hmac-sha2-512-etm@openssh.com, hmac-sha1-etm@openssh.com, umac-64@openssh.com, umac-128@openssh.com, hmac-sha2-256, hmac-sha2-512, hmac-sha1
+2024-11-21 11:32:17 - DEBUG - server mac: umac-64-etm@openssh.com, umac-128-etm@openssh.com, hmac-sha2-256-etm@openssh.com, hmac-sha2-512-etm@openssh.com, hmac-sha1-etm@openssh.com, umac-64@openssh.com, umac-128@openssh.com, hmac-sha2-256, hmac-sha2-512, hmac-sha1
+2024-11-21 11:32:17 - DEBUG - client compress: none, zlib@openssh.com
+2024-11-21 11:32:17 - DEBUG - server compress: none, zlib@openssh.com
+2024-11-21 11:32:17 - DEBUG - client lang: <none>
+2024-11-21 11:32:17 - DEBUG - server lang: <none>
+2024-11-21 11:32:17 - DEBUG - kex follows: False
+2024-11-21 11:32:17 - DEBUG - === Key exchange agreements ===
+2024-11-21 11:32:17 - DEBUG - Strict kex mode: True
+2024-11-21 11:32:17 - DEBUG - Kex: curve25519-sha256@libssh.org
+2024-11-21 11:32:17 - DEBUG - HostKey: ssh-ed25519
+2024-11-21 11:32:17 - DEBUG - Cipher: aes128-ctr
+2024-11-21 11:32:17 - DEBUG - MAC: hmac-sha2-256
+2024-11-21 11:32:17 - DEBUG - Compression: none
+2024-11-21 11:32:17 - DEBUG - === End of kex handshake ===
+2024-11-21 11:32:17 - DEBUG - Resetting outbound seqno after NEWKEYS due to strict mode
+2024-11-21 11:32:17 - DEBUG - kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+2024-11-21 11:32:17 - DEBUG - Switch to new keys ...
+2024-11-21 11:32:17 - DEBUG - Resetting inbound seqno after NEWKEYS due to strict mode
+2024-11-21 11:32:17 - DEBUG - Attempting password auth...
+2024-11-21 11:32:17 - DEBUG - Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com'}
+2024-11-21 11:32:17 - DEBUG - userauth is OK
+2024-11-21 11:32:17 - INFO - Authentication (password) successful!
+2024-11-21 11:32:17 - INFO - Successfully connected to SFTP.
+2024-11-21 11:32:17 - INFO - Scanning object_engine for any new sub folders...
+2024-11-21 11:32:17 - DEBUG - [chan 0] Max packet in: 32768 bytes
+2024-11-21 11:32:17 - DEBUG - Received global request "hostkeys-00@openssh.com"
+2024-11-21 11:32:17 - DEBUG - Rejecting "hostkeys-00@openssh.com" global request from server.
+2024-11-21 11:32:17 - DEBUG - [chan 0] Max packet out: 32768 bytes
+2024-11-21 11:32:17 - DEBUG - Secsh channel 0 opened.
+2024-11-21 11:32:17 - DEBUG - [chan 0] Sesch channel 0 request ok
+2024-11-21 11:32:17 - INFO - [chan 0] Opened sftp connection (server version 3)
+2024-11-21 11:32:17 - DEBUG - [chan 0] listdir(b'object_engine')
+2024-11-21 11:32:17 - INFO - [chan 0] sftp session closed.
+2024-11-21 11:32:17 - DEBUG - [chan 0] EOF sent (0)
+2024-11-21 11:32:17 - DEBUG - EOF in transport thread

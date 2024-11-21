@@ -250,7 +250,7 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                 sftp.put(local_results_path, result_path)
                 logging.info(f"Successfully uploaded the warning results as results.json for subfolder {subfolder}")
                 os.remove(local_results_path)
-                move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
+                #move_folder(sftp, sftp_config['SFTP_FOLDER'], sftp_config['FAILED_SFTP_FOLDER'], subfolder)
                 redis_client.delete(check_count_key)                
         else:
             try:
