@@ -23,15 +23,21 @@ The Engine uses SFTP to get inputs .
 1. Used by Core Engine for counter and lock mechanism.
 
 ### **Core Engine**
-1. This component listens on port 5000 for POSt method accepting a folder name argument.
-2. It validates the folder on SFTP for existence and fulfillement of multiple criterias and take take actions accordingly.
+1. This component listens on port 5000 for POST method accepting a folder name argument.
+2. It validates the folder on SFTP for existence and fulfilling of multiple criteria and take  actions accordingly.
 3. It uses Redis for counters and locking mechanism at different stages.
-4. Finally , it return a response and also uplods to the SFTP.
+4. Finally , it return a response and also uploads to the SFTP.
 5. Appropriate retry mechanism have been configured to ensure efficiency.
 6. It can have multiple replicas running behind a load balancer to ensure scalability and reliability.
 
 ### **SFTP Monitor**
-1. This component runs on recurrning basis(frequency can be controlled) and monitors the SFTP for input data.
+1. This component runs on recurring basis(frequency can be controlled) and monitors the SFTP for input data.
 2. Based on eligible inputs, it calls the Core Engine for processing.
 3. Appropriate retry mechanism have been configured to ensure efficiency and reliability.
 4. Ina production environment, recommended to be hosted as scheduled joblike K8 Job or AWS Lambda Function.
+
+### **User Input Listener**
+1. This component listenes on port 5001 for POST and GET methods.
+2. POST method accepts a file input which should have 2 data components called rules and objects.
+3. It will parse the files in into separate JSON objects and place them on SFTP folder object_engine inside a valid folder name as per defined nomenclature. It will return the folder name as transaction ID for user's reference or applicable error.
+4. GET method can be used to fetch the outcome by providing the transaction ID. In this it shall return valid result data set or applicable error by check the status of SFTP.
