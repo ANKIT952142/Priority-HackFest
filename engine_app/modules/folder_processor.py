@@ -235,7 +235,7 @@ def process_subfolder(sftp, folder, subfolder, redis_client, sftp_config):
                 local_results_path = os.path.join("/tmp", random_filename)
 
                 missing_files_warning = {
-                    "warning": "One or more input files missing",
+                    "warning": "One or more input files missing current. Might get processed after complete input later",
                     "details": {
                         "objects.json": files['objects.json'],
                         "rules.json": files['rules.json']

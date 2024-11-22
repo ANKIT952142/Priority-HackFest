@@ -1,0 +1,4 @@
+[
+    {"key": "age", "operator": "gt", "value": 18},
+    {"key": "city", "operator": "eq", "value": "New York"}
+]

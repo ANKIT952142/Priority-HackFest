@@ -1,0 +1,12 @@
+{
+"rules" : [
+    {"key": "age", "operator": "gt", "value": 18},
+    {"key": "city", "operator": "eq", "value": "New York"}
+],
+"objects" : [
+    {"name": "John", "age": 25, "city": "New York"},
+    {"name": "Alice", "age": 17, "city": "Los Angeles"},
+    {"name": "Bob", "age": 30, "city": "New York"},
+    {"name": "Rob", "age": 32, "city": "London"}
+]
+}

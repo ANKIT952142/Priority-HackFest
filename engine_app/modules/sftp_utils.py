@@ -132,4 +132,60 @@ def check_folder_exists(sftp, folder_name, sftp_folder):
     except Exception as e:
         logging.error(f"Error checking folder {folder_name}: {e}")
         return False
+
+def sftp_upload_folder(sftp, local_folder, remote_folder):
+    """Uploads an entire local folder to the SFTP server."""
+    for root, dirs, files in os.walk(local_folder):
+        # Create remote directory structure
+        test = os.path.relpath(root, local_folder)
+        remote_path = os.path.join(remote_folder, local_folder)
+        logging.info(f"remote_folder {remote_folder}")
+        logging.info(f"remote_path {remote_path}")
+        logging.info(f"test {test}")
+        try:
+            sftp.mkdir(remote_path)
+        except Exception as e:
+            logging.warning(f"Directory {remote_path} already exists or could not be created: {e}")
+
+        for file in files:
+            local_file_path = os.path.join(root, file)
+            remote_file_path = os.path.join(remote_path, file)
+            sftp.put(local_file_path, remote_file_path)
+            logging.info(f"Uploaded {local_file_path} to {remote_file_path}")
+
+def sftp_upload(sftp, local_folder, sftp_target_folder):
+    """
+    Uploads a local folder recursively to the specified SFTP target folder.
+
+    :param sftp: The SFTP connection object
+    :param local_folder: The path to the local folder to upload
+    :param sftp_target_folder: The target folder on the SFTP server where the local folder should be uploaded
+    """
+    try:
+        # Create the target folder on the SFTP server if it doesn't exist
+        if not exists_with_retry(sftp, sftp_target_folder):
+            sftp.mkdir(sftp_target_folder)
+            logging.info(f"Created target folder: {sftp_target_folder}")
+
+        # Walk through the local folder
+        for root, dirs, files in os.walk(local_folder):
+            # Calculate the relative path of the current folder
+            relative_path = os.path.relpath(root, local_folder)
+            # Create the corresponding folder on the SFTP server
+            current_sftp_folder = os.path.join(sftp_target_folder, relative_path)
+            if not exists_with_retry(sftp, current_sftp_folder):
+                sftp.mkdir(current_sftp_folder)
+                logging.info(f"Created folder on SFTP: {current_sftp_folder}")
+
+            # Upload all files in the current folder
+            for file in files:
+                local_file_path = os.path.join(root, file)
+                sftp_file_path = os.path.join(current_sftp_folder, file)
+                logging.info(f"Uploading {local_file_path} to {sftp_file_path}")
+                sftp.put(local_file_path, sftp_file_path)
+
+        logging.info(f"Successfully uploaded folder: {local_folder} to {sftp_target_folder}")
+
+    except Exception as e:
+        logging.error(f"Error uploading folder {local_folder} to {sftp_target_folder}: {e}")
            
