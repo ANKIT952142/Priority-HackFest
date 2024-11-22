@@ -40,7 +40,13 @@ redis.config
 
 Similarly for sftp monitor triggering engine 
 == python m -venv monitor
-== source ./engine/bin/activate
+== source ./monitor/bin/activate
+== pip install -r requirements.txt
+== python monitor.py
+
+Similarly for user listener accepting user's input 
+== python m -venv listener
+== source ./listener/bin/activate
 == pip install -r requirements.txt
 == python monitor.py
 

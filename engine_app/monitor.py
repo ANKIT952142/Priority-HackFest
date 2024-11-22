@@ -74,7 +74,7 @@ def target_new_folder(sftp, sftp_config, folder, engine_url, redis_client):
                     logging.error(f" Moving to failed category")  
                     random_filename = generate_random_filename()
                     local_results_path = os.path.join("/tmp", random_filename)
-                    error = {"Error": "Processing error for folder : Engine call from monitor failed"}
+                    error = {"Error": "Processing error for folder : Engine call from monitor failed. Reason may be engine availability or invalid data set. Please check.."}
 
                     with open(local_results_path, 'w') as f:
                         json.dump(error, f)
